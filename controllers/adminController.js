@@ -54,9 +54,7 @@ exports.findCloth = catchAsyncErrors( async ( req, res, next)=>{
       next( new ErrorHandler("Cloth not found", 404))
     )
   }
-
   res.status(201).json({message:"Cloth found"})
-
 })
 
 exports.allClothes = catchAsyncErrors(async( req, res , next) =>{
@@ -76,7 +74,7 @@ exports.updateCloth = catchAsyncErrors(async( req, res, next) =>{
 })
 
 exports.deleteCloth = catchAsyncErrors(async( req, res, next) =>{
-  const Cloth = await clothModel.findByIdAndDelete(req.params.id).save();
+  const Cloth = await clothModel.findByIdAndDelete(req.params.id).exec();
   if(!Cloth){
     return next(
       next( new ErrorHandler("Cloth not found", 404))
